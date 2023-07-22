@@ -18,13 +18,34 @@ const port = 5000;
 //     console.log("err", err);
 //   });
 
-User.find()
-  .then((res) => {
-    console.log("data", res);
-  })
-  .catch((err) => {
-    console.log("err", err);
-  });
+// User.find()
+//   .then((res) => {
+//     console.log("data", res);
+//   })
+//   .catch((err) => {
+//     console.log("err", err);
+//   });
+
+// const deleteUser = async (req, res) => {
+//   const user = await User.findById("64bbede6437c89a165d1fb8e");
+//   console.log("user", user);
+//   if (user) user.deleteOne();
+// };
+
+// deleteUser();
+
+const updateUser = async (req, res) => {
+  const user = await User.findById("64bbede6437c89a165d1fb8d");
+
+  if (user) {
+    console.log("user found", user);
+    user.firstName = "updatedname";
+
+    await user.save();
+  }
+};
+
+updateUser();
 app.listen(port, (err) => {
   err ? console.log(err) : console.log(`running on port ${port}`);
 });
